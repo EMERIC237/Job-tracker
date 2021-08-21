@@ -1,10 +1,11 @@
 import React from "react";
 import header from "./header.jpg";
+import './Layout.css'
 
 function Header() {
   return (
-    <header>
-      <img src={header} alt="office"></img>
+    <header className="header">
+      <h2>WELCOME: the path to your new feature</h2>
     </header>
   );
 }
