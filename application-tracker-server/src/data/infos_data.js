@@ -1,0 +1,1 @@
+module.exports= [{platform:"Indeed",company:"Capital one", position:"developer"}];

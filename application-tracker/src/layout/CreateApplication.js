@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import infos from '../data/infos';
+// import infos from '../data/infos';
 
 function CreateApplication() {
 
@@ -12,8 +12,7 @@ function CreateApplication() {
   const SubmitHandler = (event) => {
       event.preventDefault();
       event.stopPropagation();
-      infos.push(info)
-      console.log(infos);
+      localStorage.setItem('user_infos', JSON.stringify(info));
 
   };
   const changeHandler = ({ target: { name, value }}) => {
@@ -21,6 +20,12 @@ function CreateApplication() {
           ...prevState,
           [name]: value, 
       }));
+  }
+
+  const HandleSee = () =>{
+    localStorage.removeItem('infos')
+    const retrieved = JSON.parse(localStorage.getItem('user_infos'));
+    console.log(retrieved);
   }
   return (
     <div>
@@ -68,6 +73,9 @@ function CreateApplication() {
           </button>
           <button type="submit" className="btn btn-primary">
             Submit
+          </button>
+          <button onClick={HandleSee} className="btn btn-primary">
+            See
           </button>
         </fieldset>
 

@@ -1,8 +1,18 @@
-import React from "react";
-import infos from "../data/infos";
+import React, { useState, useEffect } from "react";
 
 function Home() {
-    const listOfInfos = infos.map((info)=> <li>{info.company}</li>)
+  const [infos, setInfos] = useState([]);
+
+  useEffect(() => {
+    fetch("/infos")
+      .then((res) => res.json())
+      .then((jsonRes) => setInfos(jsonRes.data));
+  }, []);
+  const listOfInfos = infos.map((info) => (
+    <li>
+      {info.company}-{info.position}
+    </li>
+  ));
   return (
     <div className="container">
       <div className="row">
@@ -14,9 +24,7 @@ function Home() {
       </div>
       <div className="row">
         this is the record list of you last five Application
-        <ul>
-            {listOfInfos}
-        </ul>
+        <ul>{listOfInfos}</ul>
       </div>
     </div>
   );
